@@ -12,7 +12,6 @@ class Controller:
         lista=self._model.returnDD()
         listaDD = [ft.dropdown.Option(text= l, key=l) for l in lista]
         self._view._dd.options = listaDD
-        self._view._dd.options = listaDD
         self._view.update_page()
 
     def handleCreaGrafo(self, e):
@@ -70,6 +69,16 @@ class Controller:
                     self._view.txt_result.controls.append(
                         ft.Text(f"{i}. {u} -> {v} (peso: {weight})")
                     )
+            else:
+                self._view.txt_result.controls.append(
+                    ft.Text("Attenzione!...")
+                )
+
+            dettagli3 = self._model.stampaDettagli3()
+            if dettagli3:
+                self._view.txt_result.controls.append(
+                    ft.Text(f"Dettagli1: {dettagli3}")
+                )
             else:
                 self._view.txt_result.controls.append(
                     ft.Text("Attenzione!...")

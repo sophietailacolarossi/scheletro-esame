@@ -16,11 +16,13 @@ class Model:
     def returnDD(self):
         return DAO.getDD()
 
-    def buildgraph(self, valore):
+    def buildGraph(self, valore):
         if self._valore==valore:
             return
         self._graph.clear()
-        self._edges=[]
+        self._nodes = []
+        self._edges = []
+        self._idMap = {}
         self._nodes=DAO.getNodes()
         self._graph.add_nodes_from(self._nodes)
         for nodo in self._nodes:
