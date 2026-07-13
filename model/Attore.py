@@ -1,5 +1,5 @@
-import time
 from dataclasses import dataclass
+from datetime import date
 
 
 @dataclass
@@ -8,7 +8,7 @@ class Attore:
     id: str
     name: str
     height: int
-    date_of_birth: time.datetime
+    date_of_birth: date
     known_for_movies: str
 
     def __hash__(self):

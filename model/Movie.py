@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from datetime import time
+from datetime import date
 
 
 @dataclass
@@ -8,7 +8,7 @@ class Movie:
     id:str
     title: str
     year:int
-    date_published: time.datetime
+    date_published: date
     duration: int
     country: str
     worlwide_gross_income: str
