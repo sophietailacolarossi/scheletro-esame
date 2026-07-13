@@ -42,7 +42,6 @@ class Controller:
         except Exception as ex:
             self._view.create_alert(f"Errore nella creazione del grafo: {ex}")
 
-        self._view.update_page()
 
     def handleStampaInfo(self, e):
         self._view.txt_result.controls.clear()
@@ -67,7 +66,7 @@ class Controller:
                 self._view.txt_result.controls.append(
                     ft.Text(f"{dettagli2}")
                 )
-                for i, (u, v, weight) in enumerate(dettagli1, 1):
+                for i, (u, v, weight) in enumerate(dettagli2, 1):
                     self._view.txt_result.controls.append(
                         ft.Text(f"{i}. {u} -> {v} (peso: {weight})")
                     )
