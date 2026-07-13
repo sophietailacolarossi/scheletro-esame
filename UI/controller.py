@@ -16,7 +16,7 @@ class Controller:
         self._view.update_page()
 
     def handleCreaGrafo(self, e):
-        self._view._txt_result.controls.clear()
+        self._view.txt_result.controls.clear()
 
         valore = self._view._dd.value
 
@@ -27,13 +27,13 @@ class Controller:
         try:
             self._model.buildGraph(valore)
 
-            self._view._txt_result.controls.append(
+            self._view.txt_result.controls.append(
                 ft.Text("Grafo correttamente creato.")
             )
-            self._view._txt_result.controls.append(
+            self._view.txt_result.controls.append(
                 ft.Text(f"Numero nodi: {self._model.getNumNodi()}")
             )
-            self._view._txt_result.controls.append(
+            self._view.txt_result.controls.append(
                 ft.Text(f"Numero archi: {self._model.getNumArchi()}")
             )
 
@@ -45,7 +45,7 @@ class Controller:
         self._view.update_page()
 
     def handleStampaInfo(self, e):
-        self._view._txt_result.controls.clear()
+        self._view.txt_result.controls.clear()
 
         if self._model.getNumNodi() == 0:
             self._view.create_alert("Creare prima il grafo.")
@@ -54,25 +54,25 @@ class Controller:
         try:
             dettagli1 = self._model.stampaDettagli1()
             if dettagli1:
-                self._view._txt_result.controls.append(
+                self._view.txt_result.controls.append(
                     ft.Text(f"Dettagli1: {dettagli1}")
                 )
             else:
-                self._view._txt_result.controls.append(
+                self._view.txt_result.controls.append(
                     ft.Text("Attenzione!...")
                 )
 
             dettagli2 = self._model.stampaDettagli2()
             if dettagli2:
-                self._view._txt_result.controls.append(
+                self._view.txt_result.controls.append(
                     ft.Text(f"{dettagli2}")
                 )
                 for i, (u, v, weight) in enumerate(dettagli1, 1):
-                    self._view._txt_result.controls.append(
+                    self._view.txt_result.controls.append(
                         ft.Text(f"{i}. {u} -> {v} (peso: {weight})")
                     )
             else:
-                self._view._txt_result.controls.append(
+                self._view.txt_result.controls.append(
                     ft.Text("Attenzione!...")
                 )
 
@@ -82,7 +82,7 @@ class Controller:
             self._view.create_alert(f"Errore nella stampa delle info: {ex}")
 
     def handleCammino(self, e):
-        self._view._txt_result.controls.clear()
+        self._view.txt_result.controls.clear()
 
         if self._model.getNumNodi() == 0:
             self._view.create_alert("Creare prima il grafo.")
@@ -96,7 +96,7 @@ class Controller:
             sequence_result = self._model.handleRicorsione(self._view._valore)
 
             if sequence_result is None or len(sequence_result) == 0:
-                self._view._txt_result.controls.append(
+                self._view.txt_result.controls.append(
                     ft.Text("Nessuna sequenza trovata.")
                 )
                 self._view.update_page()
@@ -104,21 +104,21 @@ class Controller:
 
             path, score = sequence_result
 
-            self._view._txt_result.controls.append(
+            self._view.txt_result.controls.append(
                 ft.Text("Sequenza trovata:")
             )
-            self._view._txt_result.controls.append(ft.Text(""))
+            self._view.txt_result.controls.append(ft.Text(""))
 
             for node in path:
-                self._view._txt_result.controls.append(
+                self._view.txt_result.controls.append(
                     ft.Text(f"Dettaglio: {node}")
                 )
 
-            self._view._txt_result.controls.append(ft.Text(""))
-            self._view._txt_result.controls.append(
+            self._view.txt_result.controls.append(ft.Text(""))
+            self._view.txt_result.controls.append(
                 ft.Text(f"Numero archi nel percorso: {len(path) - 1}")
             )
-            self._view._txt_result.controls.append(
+            self._view.txt_result.controls.append(
                 ft.Text(f"Punteggio: {score}")
             )
 
